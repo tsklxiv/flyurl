@@ -8,3 +8,7 @@ footer {
   left: 0;
   right: 0;
 }
+
+.flashes li {
+  color: red;
+}
