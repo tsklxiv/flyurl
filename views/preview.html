@@ -1,0 +1,9 @@
+<%inherit file="base.html" />
+
+<%block name="title">Preview URL - ${id}</%block>
+
+<%block name="content">
+  <p>This ID redirects to:</p>
+  <b>${original_url}</b><br/>
+  <a href=${original_url}>Proceed to this site.</a>
+</%block>

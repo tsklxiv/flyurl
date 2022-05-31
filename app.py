@@ -49,9 +49,9 @@ def redirect_to(id):
     conn = get_db_conn()
 
     url_data = conn.execute("SELECT original_url, clicks FROM urls "
-                            f"WHERE id = (?)", (id,)).fetchone()
+                            "WHERE id = (?)", (id,)).fetchone()
     if url_data is None:
-        return serve_template("404.html")
+        return serve_template("error.html", msg="Unable to redirect to URL.")
     else:
         original_url = url_data["original_url"]
         clicks = url_data["clicks"]
@@ -61,3 +61,16 @@ def redirect_to(id):
         conn.close()
 
     return redirect(original_url)
+
+@app.route("/preview/<id>")
+def preview(id):
+    conn = get_db_conn()
+
+    url_data = conn.execute("SELECT original_url FROM urls WHERE id = (?)", (id,)).fetchone()
+    conn.commit()
+    conn.close()
+    if url_data is None:
+        return serve_template("error.html", msg="This ID doesn't exist in the database.")
+    else:
+        original_url = url_data["original_url"]
+        return serve_template("preview.html", original_url=original_url, id=id)
