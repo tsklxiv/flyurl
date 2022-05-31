@@ -25,7 +25,7 @@ def index():
 
     if form.validate_on_submit():
         url = form.url.data
-        unique_id = sha256(bin(url)[:2]).hexdigest()[:7]
+        unique_id = sha256(url.encode("ascii")).hexdigest()[:7]
         shortened_url = request.host_url + unique_id
         # Make sure that we aren't duplicating the same URL over and over again
         find_url = conn.execute("SELECT * FROM urls WHERE id = (?)", (unique_id,)).fetchone()
