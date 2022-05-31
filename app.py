@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, flash, get_flashed_messages
 from mako.lookup import TemplateLookup
-from nanoid import generate
+from hashlib import sha256
 from forms import URLShortenerForm
 from sqlite3 import connect, Row
 
@@ -25,7 +25,7 @@ def index():
 
     if form.validate_on_submit():
         url = form.url.data
-        unique_id = generate(size=13)
+        unique_id = sha256(url).hexdigest()[:13]
         shortened_url = request.host_url + unique_id
         # Make sure that we aren't duplicating the same URL over and over again
         find_url = conn.execute("SELECT * FROM urls WHERE id = (?)", (unique_id,)).fetchone()
