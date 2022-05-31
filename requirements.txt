@@ -1,5 +1,5 @@
 flask==2.1.2
 Flask-WTF==1.0.1
-hashids==1.3.1
+nanoid==2.0.0
 mako==1.2.0
 
