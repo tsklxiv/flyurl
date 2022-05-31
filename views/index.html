@@ -1,0 +1,26 @@
+<%inherit file="base.html" />
+
+<%block name="title">FlyURL - Let your URL fly!</%block>
+
+<%block name="content">
+  <h3>FlyURL - Let your URL fly!</h3>
+  <form action="/" method="POST">
+    ${form.csrf_token}
+    ${form.url.label} ${form.url}
+    % if form.url.errors:
+      <ul class="errors">
+        % for error in form.url.errors:
+          <li>${error}</li>
+        % endfor
+      </ul>
+    % endif
+    <br/>
+    ${form.submit()}
+  </form>
+  % if shortened_url:
+    <em>
+      Here is your shortened URL: <br/>
+      <a href=${shortened_url}>${shortened_url}</a>
+    </em>
+  % endif
+</%block>
