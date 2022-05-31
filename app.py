@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect, flash, get_flashed_messages
 from mako.lookup import TemplateLookup
+from nanoid import generate
 from forms import URLShortenerForm
-from hashids import Hashids
 from sqlite3 import connect, Row
 
 def get_db_conn():
@@ -12,8 +12,6 @@ def get_db_conn():
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "8bd9bcd109b0d5315f88dc9e32079807475ac01523b9cfa9191c412ba36a2c6e"
 app.config["DEBUG"] = True
-
-hashid = Hashids(salt=app.config["SECRET_KEY"], min_length=5)
 
 templates = TemplateLookup(directories=["./views"], module_directory="/tmp/mako_modules")
 def serve_template(name, **kwargs):
@@ -27,7 +25,7 @@ def index():
 
     if form.validate_on_submit():
         url = form.url.data
-        unique_id = hashid.encode(*[ord(c) for c in url])[5:10]
+        unique_id = generate(size=13)
         shortened_url = request.host_url + unique_id
         # Make sure that we aren't duplicating the same URL over and over again
         find_url = conn.execute("SELECT * FROM urls WHERE id = (?)", (unique_id,)).fetchone()
