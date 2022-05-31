@@ -5,21 +5,21 @@ FlyURL is a simple, self-hosted URL shortener, built with Python web technology.
 # Screenshots
 
 <figure>
-    <img src="https://files.catbox.moe/719y6f.png"
+    <img src="https://files.catbox.moe/ng49xy.png"
          alt="FlyURL Homepage">
     <figcaption>The default homepage</figcaption>
 </figure>
 
 <figure>
-    <img src="https://files.catbox.moe/vl2b00.png"
-         alt="Previewing a shortened URL">
-    <figcaption>Previewing a shortened URL</figcaption>
+    <img src="https://files.catbox.moe/7bn1fp.png"
+         alt="Showing shortened URL">
+    <figcaption>Showing the shortened URL</figcaption>
 </figure>
 
 <figure>
-    <img src="https://files.catbox.moe/4rtioh.png"
-         alt="Showing shortened URL">
-    <figcaption>Showing the shortened URL</figcaption>
+    <img src="https://files.catbox.moe/p012h3.png"
+         alt="Previewing a shortened URL">
+    <figcaption>Previewing a shortened URL</figcaption>
 </figure>
 
 # Getting started
