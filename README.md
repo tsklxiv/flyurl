@@ -1,6 +1,6 @@
 # FlyURL - Let your URL fly!
 
-FlyURL is a simple, self-hosted URL shortener.
+FlyURL is a simple, self-hosted URL shortener, built with Python web technology.
 
 # Getting started
 
