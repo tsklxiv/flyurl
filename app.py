@@ -13,7 +13,7 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = "8bd9bcd109b0d5315f88dc9e32079807475ac01523b9cfa9191c412ba36a2c6e"
 app.config["DEBUG"] = True
 
-templates = TemplateLookup(directories=["./views"], module_directory="/tmp/mako_modules")
+templates = TemplateLookup(directories=["./templates"], module_directory="/tmp/mako_modules")
 def serve_template(name, **kwargs):
     template = templates.get_template(name)
     return template.render(**kwargs, messages=get_flashed_messages())
