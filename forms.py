@@ -5,4 +5,4 @@ from wtforms.validators import URL, DataRequired
 class URLShortenerForm(FlaskForm):
     url = URLField("Your long URL:", validators=[URL(), DataRequired()])
     custom_key = StringField("Custom key:")
-    submit = SubmitField("Shorten!")
+    submit = SubmitField("Fly!")
