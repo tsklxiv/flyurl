@@ -10,7 +10,7 @@ def get_db_conn():
     conn.row_factory = Row
     return conn
 
-blacklisted_domains = open("static/general_blacklist.txt", "r").read()
+blacklisted_domains = open("static/general_blacklist.txt", "r").read().split("\n") + open("static/url_shorteners_blacklist.txt", "r").read().split("\n")[3:]
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "8bd9bcd109b0d5315f88dc9e32079807475ac01523b9cfa9191c412ba36a2c6e"
 
