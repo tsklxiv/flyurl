@@ -1,5 +1,4 @@
 # This file contains a list of almost all URL shorteners services out there,
-
 # whether alive or dead.
 # Note that this doesn't include URL shorteners used internally by companies
 # and doesn't provide a way for users to create and shorten an URL
