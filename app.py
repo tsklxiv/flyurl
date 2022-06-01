@@ -27,7 +27,8 @@ def index():
         url = form.url.data
         custom_key = form.custom_key.data
         unique_id = (sha256(url.encode("ascii")).hexdigest()[:7] if custom_key == "" else custom_key)
-        shortened_url = request.host_url + unique_id
+        shortened_url = f"http://{request.host}/{unique_id}"
+        preview_url = f"http://{request.host}/p/{unique_id}"
         # Make sure that we aren't duplicating the same URL over and over again
         find_url = conn.execute("SELECT * FROM urls WHERE id = (?)", (unique_id,)).fetchone()
         if find_url is not None:
@@ -43,7 +44,10 @@ def index():
             conn.commit()
             conn.close()
 
-        return serve_template("index.html", form=form, shortened_url=shortened_url)
+        return serve_template("index.html",
+                              form=form,
+                              shortened_url=shortened_url,
+                              preview_url=preview_url)
     return serve_template("index.html", form=form)
 
 @app.route("/<id>")
