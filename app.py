@@ -64,7 +64,7 @@ def redirect_to(id):
 
     return redirect(original_url)
 
-@app.route("/preview/<id>")
+@app.route("/<id>", subdomain="p")
 def preview(id):
     conn = get_db_conn()
 
