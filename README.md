@@ -52,4 +52,4 @@ flask run
 - [Mako](https://www.makotemplates.org/) (Template engine)
 - [SQLite](https://sqlite.org) (Database)
 - [Flask-WTF](https://flask-wtf.readthedocs.io/en/1.0.x/) (Handling forms)
-- [Bahunya](https://hakanalpay.com/bahunya/) (CSS styling)
+- [Lit](https://ajusa.github.io/lit/docs/lit.html?) (CSS styling)
