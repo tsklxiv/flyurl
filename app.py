@@ -3,15 +3,16 @@ from mako.lookup import TemplateLookup
 from hashlib import sha256
 from forms import URLShortenerForm
 from sqlite3 import connect, Row
+from urllib.parse import urlparse
 
 def get_db_conn():
     conn = connect("database.db")
     conn.row_factory = Row
     return conn
 
+blacklisted_domains = open("static/general_blacklist.txt", "r").read()
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "8bd9bcd109b0d5315f88dc9e32079807475ac01523b9cfa9191c412ba36a2c6e"
-app.config["DEBUG"] = True
 
 templates = TemplateLookup(directories=["./templates"], module_directory="/tmp/mako_modules")
 def serve_template(name, **kwargs):
@@ -25,10 +26,16 @@ def index():
 
     if form.validate_on_submit():
         url = form.url.data
+        hostname = urlparse(url).hostname # For checking if blacklisted or not
         custom_key = form.custom_key.data
         unique_id = (sha256(url.encode("ascii")).hexdigest()[:7] if custom_key == "" else custom_key)
         shortened_url = f"http://{request.host}/{unique_id}"
         preview_url = f"http://{request.host}/p/{unique_id}"
+        if (hostname is not None and hostname in blacklisted_domains):
+            return serve_template(
+                "error.html",
+                msg="This URL is in the internal blacklist. It may contain porn or other nasty stuff, or link to another URL redirection service."
+            )
         # Make sure that we aren't duplicating the same URL over and over again
         find_url = conn.execute("SELECT * FROM urls WHERE id = (?)", (unique_id,)).fetchone()
         if find_url is not None:
