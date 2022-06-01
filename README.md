@@ -7,7 +7,7 @@ FlyURL is a simple, self-hosted URL shortener, built with Python web technology.
 - [x] Preview a shortened URL by adding `p/` before the ID. e.g. `http://localhost:5000/6277dd6` becomes `http://localhost:5000/p/6277dd6`
 - [x] Block duplicated URLs
 - [x] URLs with custom ID
-- [x] Blacklist other URL shortener services, and harmful links (Only harmful links are blocked, links taken from [Steven Black's hosts](https://github.com/StevenBlack/hosts))
+- [x] Blacklist other URL shortener services, and harmful links taken from [Steven Black's hosts](https://github.com/StevenBlack/hosts)
 - [ ] Simple click tracker analytics
 - [ ] Lookup tools to look up if a URL has been shortened before
 - [ ] Self-expire (based on clicks/time)
