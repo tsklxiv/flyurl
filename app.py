@@ -38,6 +38,7 @@ def index():
               f"Unique ID: {unique_id}\n"
               f"Shortened URL: {shortened_url}")
             form.url.data = ""
+            form.custom_key.data = ""
             conn.execute(f"INSERT INTO urls (id, original_url) VALUES (?, ?)", (unique_id, url))
             conn.commit()
             conn.close()
