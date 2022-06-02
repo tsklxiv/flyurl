@@ -31,6 +31,7 @@ def index():
         unique_id = (sha256(url.encode("ascii")).hexdigest()[:7] if custom_key == "" else custom_key)
         shortened_url = f"http://{request.host}/{unique_id}"
         preview_url = f"http://{request.host}/p/{unique_id}"
+        statistics_url = f"http://{request.host}/s/{unique_id}"
         if (hostname is not None and hostname in blacklisted_domains):
             return serve_template(
                 "error.html",
@@ -54,7 +55,8 @@ def index():
         return serve_template("index.html",
                               form=form,
                               shortened_url=shortened_url,
-                              preview_url=preview_url)
+                              preview_url=preview_url,
+                              statistics_url=statistics_url)
     return serve_template("index.html", form=form)
 
 @app.route("/<id>")
