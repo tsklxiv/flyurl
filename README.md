@@ -8,7 +8,7 @@ FlyURL is a simple, self-hosted URL shortener, built with Python web technology.
 - [x] Block duplicated URLs
 - [x] URLs with custom ID
 - [x] Blacklist other URL shortener services, and harmful links
-- [ ] Simple click tracker analytics
+- [x] Simple click tracker analytics
 - [ ] Lookup tools to look up if a URL has been shortened before
 - [ ] Self-expire (based on clicks/time)
 - [ ] Branded URLs (?)
