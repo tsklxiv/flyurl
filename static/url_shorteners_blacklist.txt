@@ -12,6 +12,9 @@ cutt.ly
 vo.la
 yi.tl
 
+# Added by Dang Hoang Tuan (02/06/2022)
+gg.gg
+
 # https://bit.do/list-of-url-shorteners.php
 bit.do
 adf.ly
