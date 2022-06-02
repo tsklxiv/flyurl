@@ -3,10 +3,12 @@
 <%block name="title">Statistics for ID ${id}</%block>
 
 <%block name="content">
-  h3{Click statistics}
+  <h3>Click statistics</h3>
   <p>
-    Shortened URL ${shortened_url}, which redirects to ${original_url}
+    Shortened URL <b>${shortened_url}</b>,
+    which redirects to <b>${original_url}</b> <br/>
     has been clicked ${clicks} times since ${created_date}.
   </p>
   <a href="/">Go back home</a>
+  <a href=${original_url}>Proceed to the site</a>
 </%block>
