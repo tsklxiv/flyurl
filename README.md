@@ -45,7 +45,7 @@ source venv/bin/Activate.csh  # csh
 source venv/bin/Activate.fish # fish
 source venv/bin/Activate.ps1  # Powershell
 python init_db.py
-flask run
+./run_server.sh
 ```
 
 # Tech stack
