@@ -78,7 +78,6 @@ def redirect_to(id):
 @app.route("/p/<id>")
 def preview(id):
     conn = get_db_conn()
-
     url_data = conn.execute("SELECT original_url FROM urls WHERE id = (?)", (id,)).fetchone()
     conn.commit()
     conn.close()
@@ -87,3 +86,22 @@ def preview(id):
     else:
         original_url = url_data["original_url"]
         return serve_template("preview.html", original_url=original_url, id=id)
+
+@app.route("/s/<id>")
+def stat(id):
+    conn = get_db_conn()
+    url_data = conn.execute("SELECT clicks, time, original_url FROM urls WHERE id = (?)", (id,)).fetchone()
+    conn.commit()
+    conn.close()
+    if url_data is None:
+        return serve_template("error.html", msg="This ID doesn't exist in the database.")
+    else:
+        clicks = url_data["clicks"]
+        original_url = url_data["original_url"]
+        created_date = url_data["time"]
+        shortened_url = f"http://{request.host}/{id}"
+        return serve_template("stat.html",
+                              clicks=clicks,
+                              original_url=original_url,
+                              shortened_url=shortened_url,
+                              created_date=created_date)

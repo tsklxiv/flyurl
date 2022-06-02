@@ -1,0 +1,12 @@
+<%inherit file="base.html"/>
+
+<%block name="title">Statistics for ID ${id}</%block>
+
+<%block name="content">
+  h3{Click statistics}
+  <p>
+    Shortened URL ${shortened_url}, which redirects to ${original_url}
+    has been clicked ${clicks} times since ${created_date}.
+  </p>
+  <a href="/">Go back home</a>
+</%block>
